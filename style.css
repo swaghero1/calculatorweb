@@ -1,0 +1,27 @@
+#calc-container {
+    background-color: grey; 
+    width : 500px; 
+    border-radius: 100px; 
+    height: 500px;
+} 
+
+
+.text-primary {
+    color : white; 
+}
+.btn-1{
+
+    background-color: rgb(62, 62, 62); 
+    color : black; 
+} 
+
+body {
+    background: linear-gradient(to right, #000, #888, #fff);
+} 
+.col-12 {
+    background-color: grey; 
+    
+} 
+.btn btn-primary {
+    background : grey; 
+}

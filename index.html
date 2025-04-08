@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <nav>
+            <div class="d-flex justify-content-center align-items-center">
+                <h1>cal.com</h1>
+            </div>
+        </nav>
+    </section>
+
+    <div class="container text-center" id="calc-container">
+        <h1 class="text-primary">CALCULATOR</h1>
+        
+        <form>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="first-number" placeholder="First Number">
+                <label for="first-number">First Number</label>
+            </div>
+
+            <select class="form-select mb-3" id="operation">
+                <option selected>Select Operation</option>
+                <option value="addition">+</option>
+                <option value="subtraction">-</option>
+                <option value="multiplication">x</option>
+                <option value="division">/</option>
+            </select>
+
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="second-number" placeholder="Second Number">
+                <label for="second-number">Second Number</label>
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-secondary btn-lg rounded-pill shadow-lg" type="button" id="calculate-btn">CALCULATE</button>
+            </div> 
+        </form> 
+
+        <!-- Placeholder for result -->
+        <div class="mt-4 alert alert-info d-none" id="result"></div>
+
+        <div class="alert d-none" id="error-message">
+            Please provide valid numbers and select an operation.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const calculateButton = document.getElementById("calculate-btn");
+            const firstNumberInput = document.getElementById("first-number");
+            const secondNumberInput = document.getElementById("second-number");
+            const operationSelect = document.getElementById("operation");
+            const errorMessage = document.getElementById("error-message");
+            const resultDiv = document.getElementById("result");
+
+            calculateButton.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                // Get the values from the inputs
+                const firstNumber = firstNumberInput.value.trim();
+                const secondNumber = secondNumberInput.value.trim();
+                const operation = operationSelect.value;
+
+                // Validate the inputs
+                if (!firstNumber || !secondNumber || operation === "Select Operation") {
+                    errorMessage.classList.remove("d-none"); // Show error message
+                    resultDiv.classList.add("d-none"); // Hide result
+                    return;
+                } else {
+                    errorMessage.classList.add("d-none"); // Hide error message
+                }
+
+                // Convert inputs to numbers
+                const firstNum = parseFloat(firstNumber);
+                const secondNum = parseFloat(secondNumber);
+                let result;
+
+                // Perform the operation
+                if (operation === "addition") {
+                    result = firstNum + secondNum;
+                } else if (operation === "subtraction") {
+                    result = firstNum - secondNum;
+                } else if (operation === "multiplication") {
+                    result = firstNum * secondNum;
+                } else if (operation === "division") {
+                    if (secondNum !== 0) {
+                        result = firstNum / secondNum;
+                    } else {
+                        alert("Cannot divide by zero!");
+                        resultDiv.classList.add("d-none"); // Hide result
+                        return;
+                    }
+                }
+
+                // Display the result below the button
+                resultDiv.textContent = `Result: ${result}`;
+                resultDiv.classList.remove("d-none"); // Show result
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <nav>
+            <div class="d-flex justify-content-center align-items-center">
+                <h1>cal.com</h1>
+            </div>
+        </nav>
+    </section>
+
+    <div class="container text-center" id="calc-container">
+        <h1 class="text-primary">CALCULATOR</h1>
+        
+        <form>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="first-number" placeholder="First Number">
+                <label for="first-number">First Number</label>
+            </div>
+
+            <select class="form-select mb-3" id="operation">
+                <option selected>Select Operation</option>
+                <option value="addition">+</option>
+                <option value="subtraction">-</option>
+                <option value="multiplication">x</option>
+                <option value="division">/</option>
+            </select>
+
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="second-number" placeholder="Second Number">
+                <label for="second-number">Second Number</label>
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-secondary btn-lg rounded-pill shadow-lg" type="button" id="calculate-btn">CALCULATE</button>
+            </div> 
+            
+        </form> 
+        
+        <div class="alert" id="error-message">
+           Please provide valid numbers and select an operation.
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const calculateButton = document.getElementById("calculate-btn");
+            const firstNumberInput = document.getElementById("first-number");
+            const secondNumberInput = document.getElementById("second-number");
+            const operationSelect = document.getElementById("operation");
+            const errorMessage = document.getElementById("error-message");
+
+            calculateButton.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                // Get the values from the inputs
+                const firstNumber = firstNumberInput.value.trim();
+                const secondNumber = secondNumberInput.value.trim();
+                const operation = operationSelect.value;
+
+                // Validate the inputs
+                if (!firstNumber || !secondNumber || operation === "Select Operation") {
+                    errorMessage.classList.remove("d-none"); // Show the error message
+                    return;
+                } else {
+                    errorMessage.classList.add("d-none"); // Hide the error message
+                }
+
+                // Convert inputs to numbers
+                const firstNum = parseFloat(firstNumber);
+                const secondNum = parseFloat(secondNumber);
+                let result;
+
+                // Perform the operation
+                if (operation === "addition") {
+                    result = firstNum + secondNum;
+                } else if (operation === "subtraction") {
+                    result = firstNum - secondNum;
+                } else if (operation === "multiplication") {
+                    result = firstNum * secondNum;
+                } else if (operation === "division") {
+                    if (secondNum !== 0) {
+                        result = firstNum / secondNum;
+                    } else {
+                        alert("Cannot divide by zero!");
+                        return;
+                    }
+                }
+
+                // Display the result
+                alert(`The result is: ${result}`);
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Document</title> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel = "stylesheet" href ="style.css"> 
+
+</head>
+<body> 
+    <section>
+        <nav>
+    <div class="d-flex justify-content-center align-items-center">
+        <h1>cal.com</h1>
+      </div> 
+    </nav>
+    </section> 
+    
+ 
+      
+        </div> 
+        <div class="container text-center" id = "calc-container">
+            <h1 class="text-primary">CALCULATOR</h1> 
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingInput" placeholder="First Number">
+                <label for="floatingInput">First Number</label>
+              </div>
+              
+                     
+         
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Select Operation</option>
+                    <option value="addition">+</option>
+                    <option value="subtraction">-</option>
+                    <option value="multiplication">x</option>
+                    <option value="division">/</option>
+                  </select>
+                <!-- <select name="operation" id="operation">
+                    <option value="add">+</option>
+                    <option value="minus">-</option>
+                    <option value="multiplication">x</option>
+                    <option value="division">/</option>
+                  </select> -->
+                  <!-- <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingInput" placeholder="Second Number">
+                    <label for="floatingInput">Second Number</label>
+                  </div>
+                  
+                  <div class="col-12">
+                    <button class="btn btn-secondary btn-lg rounded-pill shadow-lg" type="submit">CALCULATE</button>
+                  </div>
+                </div>
+              
+            </form>
+          </div>
+        
+
+
+
+
+    </section> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src=”https://code.jquery.com/jquery-3.2.1.slim.min.js” integrity=”sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN” crossorigin=”anonymous”></script>
+
+<script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js integrity=”sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q” crossorigin=”anonymous”></script>
+
+<script src=”https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js” integrity=”sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl” crossorigin=”anonymous”></script>
+</body>
+</html> -->
